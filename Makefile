@@ -1,4 +1,6 @@
 
+TGT = rblink
+
 .PHONY: all
 all:
 	cargo build
@@ -6,6 +8,14 @@ all:
 .PHONY: release
 release:
 	cargo build --release
+
+.PHONY: bin
+bin:
+	cargo objcopy --bin $(TGT) --release -- -O binary $(TGT).bin
+
+.PHONY: size
+size:
+	cargo size --bin $(TGT) --release -- -A -x
 
 .PHONY: fmt
 fmt:
@@ -22,3 +32,4 @@ lint:
 .PHONY: clean
 clean:
 	cargo clean
+	-rm $(TGT).bin
