@@ -32,7 +32,7 @@ fn main() -> ! {
     loop {
         gpiod.bsrr.write(|w| w.bs12().set_bit());
         cortex_m::asm::delay(2000000);
-        gpiod.brr.write(|w| w.br12().set_bit());
+        gpiod.bsrr.write(|w| w.br12().set_bit());
         cortex_m::asm::delay(2000000);
     }
 }
